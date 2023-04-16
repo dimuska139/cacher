@@ -14,9 +14,11 @@ type Config struct {
 	// Тип используемого хранилища (memcache или любое другое значения для использования встроенного кеша)
 	Storage string `yaml:"storage"`
 	// Список серверов Memcache (при использовании storage != memcache можно не указывать)
+	// Для упрощения тут поддерживается только TCP, unix-сокеты - нет
 	MemcacheServers []string `yaml:"memcache_servers"`
 }
 
+// NewConfig инициализирует конфиг
 func NewConfig(configPath string) (*Config, error) {
 	yamlFile, err := os.ReadFile(configPath)
 	if err != nil {

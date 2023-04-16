@@ -2,16 +2,25 @@ package memcache
 
 import (
 	"fmt"
-	"github.com/dimuska139/cacher/libs/memcache"
 	"time"
 )
 
+//go:generate mockgen -source=memcache.go -destination=./memcache_mock.go -package=memcache
+
+// Memcacher интерфейс для библиотеки-клиента Memcache
+type Memcacher interface {
+	Get(key string) ([]byte, error)
+	Set(key string, value []byte, expiration int64) error
+	Delete(key string) error
+}
+
+// MemcacheStorage реализация кеша через Memcache
 type MemcacheStorage struct {
-	memcacheClient *memcache.Client
+	memcacheClient Memcacher
 }
 
 // NewMemcacheStorage создаёт реализацию кеша через Memcache
-func NewMemcacheStorage(memcacheClient *memcache.Client) *MemcacheStorage {
+func NewMemcacheStorage(memcacheClient Memcacher) *MemcacheStorage {
 	return &MemcacheStorage{
 		memcacheClient: memcacheClient,
 	}

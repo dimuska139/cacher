@@ -8,8 +8,10 @@ import (
 	"time"
 )
 
+// NewClient инициирует библиотеку для работы с Memcache
 func NewClient(config *config.Config) (*memcacheClient.Client, error) {
 	srvs := make([]net.Addr, 0, len(config.MemcacheServers))
+	// Для упрощения тут поддерживается только TCP, unix-сокеты - нет
 	for _, addr := range config.MemcacheServers {
 		tcpaddr, err := net.ResolveTCPAddr("tcp", addr)
 		if err != nil {

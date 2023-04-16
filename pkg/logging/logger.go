@@ -15,10 +15,12 @@ const (
 	DefaultLogLevel = zerolog.DebugLevel
 )
 
+// Logger отвечает за логирование
 type Logger struct {
 	logger zerolog.Logger
 }
 
+// NewLogger создаёт логгер
 func NewLogger(cfg *config.Config) *Logger {
 	logger := zerolog.New(zerolog.NewConsoleWriter(func(w *zerolog.ConsoleWriter) {
 		w.TimeFormat = time.RFC3339

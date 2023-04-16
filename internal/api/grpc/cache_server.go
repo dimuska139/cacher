@@ -8,21 +8,27 @@ import (
 	"time"
 )
 
+//go:generate mockgen -source=cache_server.go -destination=./cache_server_mock.go -package=grpc
+
+// Logger интерфейс для логгера
 type Logger interface {
 	Error(msg string, args ...interface{})
 }
 
+// Storage хранилище
 type Storage interface {
 	Get(key string) ([]byte, error)
 	Set(key string, value []byte, ttl time.Duration) error
 	Delete(key string) error
 }
 
+// CacheServer контроллер для сервиса кеширования
 type CacheServer struct {
 	logger  Logger
 	storage Storage
 }
 
+// NewCacheServer создаёт контроллер для сервиса кеширования
 func NewCacheServer(
 	logger Logger,
 	storage Storage,

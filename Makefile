@@ -5,3 +5,7 @@ grpc_server:
 # Запуск приложения
 run:
 	go run ./cmd/main.go --config=./config.yml
+
+# Запуск тестов
+test:
+	go test -covermode=atomic ./...

@@ -21,11 +21,15 @@
 `libs/memcache`. Пулл коннектов в ней реализован. Хранилища находятся в директории
 `internal/cache`. Интерфейс к ним находится там, где они используются - то есть
 в `internal/api/grpc/cache_server.go`. Выбор типа используемого хранилища
-осуществляется с помощью переменной в конфигурационном файле - `storage`.
+осуществляется с помощью переменной в конфигурационном файле - `storage`. Proto-файлы находятся
+тут: `internal/api/grpc/proto`.
 
 ## Запуск
-1. Скопировать файл `config.yml.dist` в `config.yml`
+1. Скопировать файл `config.yml.dist` (это шаблон) в `config.yml`
 2. Запустить docker-compose: `sudo docker-compose up -d`
 3. Запустить сервис: `make run`
 
-Тесты можно запустить с помощью команды `go test -covermode=atomic ./...`
+## Команды
+* `make run` - запуск сервиса
+* `make test` - запуск тестов
+* `make grpc_server` - генерация proto
