@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package cacher.cache.v1;
+
+option go_package = "cacher/cache/v1";
+
+import "cacher/cache/v1/cache.proto";
+
+service CacheAPI {
+  rpc Get(GetRequest) returns (GetResponse);
+
+  rpc Set(SetRequest) returns (SetResponse);
+
+  rpc Delete(DeleteRequest) returns (DeleteResponse);
+}

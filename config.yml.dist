@@ -1,0 +1,5 @@
+grpc_port: 9000
+loglevel: debug
+storage: memcache # internal
+memcache_servers:
+  - 127.0.0.1:11211

@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package cacher.cache.v1;
+
+option go_package = "cacher/cache/v1";
+
+message GetRequest {
+  // Ключ
+  string key = 1;
+}
+
+message GetResponse {
+  // Значение
+  bytes value = 1;
+}
+
+
+message SetRequest {
+  // Ключ
+  string key = 1;
+  // Значение
+  bytes value = 2;
+  // Время жизни в секундах
+  uint64 ttl = 3;
+}
+
+message SetResponse {
+}
+
+message DeleteRequest {
+  // Ключ
+  string key = 1;
+}
+
+message DeleteResponse {
+}
