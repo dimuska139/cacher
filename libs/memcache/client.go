@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"bytes"
 	"fmt"
+	"github.com/pkg/errors"
 	"runtime"
 	"sync"
 )
@@ -65,7 +66,7 @@ func (c *Client) Get(key string) ([]byte, error) {
 		}
 
 		if !bytes.HasSuffix(row, []byte("\r\n")) {
-			return nil, fmt.Errorf("invalid data in cache")
+			return nil, errors.New("invalid data in cache")
 		}
 
 		return row[0 : len(row)-2], nil // Удаляем \r\n в конце строки
